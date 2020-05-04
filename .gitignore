@@ -2,4 +2,9 @@ __pycache__/
 .env
 .ipynb_checkpoints/
 .vscode/launch.json
-__pycache__
+.DS_Store
+.idea
+venv/
+.ipynb_checkpoints
+__pycache__/
+.env
