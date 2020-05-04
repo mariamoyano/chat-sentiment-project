@@ -105,12 +105,27 @@ def sentiments(chat_id):
 #GET recommend friend 
 def recommend(user_id):
 
-    #text =chats.find({},{"text":1})
-    #x =[e for e in text] #chatId donde hay mensajes
-    #x2 =x[0]
-    #idtext = chats.find(x2,{"text":1})
-    
-        
-    return ""
+    def rec(user_id):
+        sentimentAnalyzer = SentimentIntensityAnalyzer()
+        chat =list(chats.find({"Users":user_id},{"text":1})) 
+        x =list(chats.find(chat[0],{"_id":0,"Messages":1}))
+        x2 =x[0]
+        messages = x2["Messages"] 
+        text = "" #Obtengo el texto del usuario en la conversacion
+        for e in messages:
+            if e["Users"] == user_id:
+                text +=e["text"]
+        textS = (sentimentAnalyzer.polarity_scores(text))
+        return textS["pos"]
+
+    chat =list(chats.find({"Users":user_id},{"text":1}))
+    x =list(chats.find(chat[0],{"_id":0,"Users":1}))
+    x2 =x[0]
+    users = x2["Users"] 
+
+    compare={}
+    for e in users:
+        compare.update({e:rec(e)})
+    return f"Friend recommendation: {max(compare)}"
 
 
