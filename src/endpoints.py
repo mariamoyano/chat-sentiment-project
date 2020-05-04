@@ -119,9 +119,8 @@ def recommend(user_id):
         return textS["pos"]
 
     chat =list(chats.find({"Users":user_id},{"text":1}))
-    x =list(chats.find(chat[0],{"_id":0,"Users":1}))
-    x2 =x[0]
-    users = x2["Users"] 
+    x =list(chats.find(chat[0],{"_id":0,"Users":1}))[0]
+    users = x["Users"] 
 
     compare={}
     for e in users:
