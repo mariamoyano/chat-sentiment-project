@@ -1,8 +1,5 @@
 from app import *
 from errorHandler import errorHandler, Error404
-from nltk.corpus import stopwords
-from nltk.sentiment.vader import SentimentIntensityAnalyzer
-import nltk
 from endpoints import *
 from config import PORT
 

@@ -126,6 +126,6 @@ def recommend(user_id):
     compare={}
     for e in users:
         compare.update({e:rec(e)})
-    return f"Friend recommendation: {max(compare)}"
+    return dumps({"Friend recommendation": max(compare)})
 
 
